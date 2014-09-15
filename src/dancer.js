@@ -4,6 +4,7 @@ var Dancer = function(top, left, timeBetweenSteps){
   this._timeBetweenSteps = timeBetweenSteps;
   this.step();
   this.setPosition(top, left);
+  window.dancers.push(this);
 };
 
 Dancer.prototype.step = function(){
@@ -16,4 +17,12 @@ Dancer.prototype.setPosition = function(top, left){
     left: left
   };
   this.$node.css(styleSettings);
+};
+
+Dancer.prototype.move = function(top, left){
+  this.$node.animate({top: top, left: left}, 600, easeQuadInOut);
+};
+
+Dancer.prototype.getHeight = function(){
+  return this.$node.height() + parseInt(this.$node.css('borderTopWidth'), 10) + parseInt(this.$node.css('borderBottomWidth'), 10);
 };

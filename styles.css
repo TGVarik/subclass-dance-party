@@ -24,4 +24,6 @@ body, a:link, a:visited, a:active{
   border:10px solid red;
   border-radius:10px;
   position:absolute;
+
+  transition: left top, 600ms, cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }

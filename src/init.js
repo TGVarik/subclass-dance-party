@@ -1,6 +1,10 @@
 $(document).ready(function(){
   window.dancers = [];
 
+  window.easeQuadInOut = function (x, t, b, c, d){
+    if ((t/=d/2) < 1) return c/2*t*t + b;
+    return -c/2 * ((--t)*(t-2) - 1) + b;
+  };
   $(".addDancerButton").on("click", function(event){
     /* This function sets up the click handlers for the create-dancer
      * buttons on index.html. You should only need to make one small change to it.
@@ -28,6 +32,12 @@ $(document).ready(function(){
       Math.random() * 1000
     );
     $('body').append(dancer.$node);
+  });
+
+  $('.manipulateDancersButton').on('click', function(){
+    var dancerManipulatorFunctionName = $(this).data('dancer-manipulator-function-name');
+    console.log(dancerManipulatorFunctionName);
+    window[dancerManipulatorFunctionName]();
   });
 });
 
