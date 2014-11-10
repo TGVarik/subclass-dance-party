@@ -8,7 +8,9 @@ var Dancer = function(top, left, timeBetweenSteps){
 };
 
 Dancer.prototype.step = function(){
-  setTimeout(this.step.bind(this), this._timeBetweenSteps)
+  setTimeout(this.step.bind(this), this._timeBetweenSteps);
+  // TODO: Move back to Blinky
+  this.$node.toggle();
 };
 
 Dancer.prototype.setPosition = function(top, left){
