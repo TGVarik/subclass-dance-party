@@ -1,16 +1,20 @@
-// Creates and returns a new dancer object that can step
 var Dancer = function(top, left, timeBetweenSteps){
-  this.$node = $('<span class="dancer"></span>');
   this._timeBetweenSteps = timeBetweenSteps;
-  this.step();
-  this.setPosition(top, left);
+  this._wall = 10;
+  this.isDancing = true
+  this.$node = $('<span class="dancer"></span>');
+  this.explosion = {url:'url(images/explosion.gif?id=' + Math.floor(Math.random() * 1000)+ ')',
+                    width: '71px',
+                    height: '100px',
+                    duration: 710};
+  this.step();  // sets the beat of the dancer
+  this.setPosition(top, left);  // randomly positions the dancer
+
   window.dancers.push(this);
 };
 
 Dancer.prototype.step = function(){
   setTimeout(this.step.bind(this), this._timeBetweenSteps);
-  // TODO: Move back to Blinky
-  this.$node.toggle();
 };
 
 Dancer.prototype.setPosition = function(top, left){
@@ -21,10 +25,19 @@ Dancer.prototype.setPosition = function(top, left){
   this.$node.css(styleSettings);
 };
 
-Dancer.prototype.move = function(top, left){
-  this.$node.animate({top: top, left: left}, 600, easeQuadInOut);
-};
+Dancer.prototype.explode = function(silent){
+  this.isDancing = false;
+  this.$node.stop(true);
+  this.$node.css('width', this.explosion.width);
+  this.$node.css('height', this.explosion.height);
+  this.$node.css('background-color', 'transparent');
+  this.$node.css('background-image', this.explosion.url);
 
-Dancer.prototype.getHeight = function(){
-  return this.$node.height() + parseInt(this.$node.css('borderTopWidth'), 10) + parseInt(this.$node.css('borderBottomWidth'), 10);
-};
+  setTimeout(function(){
+    //this.$node.css('background-image', 'none');
+    this.$node.remove();
+  }.bind(this), this.explosion.duration);
+}
+
+
+

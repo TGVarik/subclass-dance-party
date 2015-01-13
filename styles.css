@@ -3,8 +3,8 @@ body, html{
 }
 body{
   margin: 0px;
-  background-color:#444;
   font-size: 18px;
+  background-image: url("images/congruent.png");
 }
 body, a:link, a:visited, a:active{
   color: lightblue;
@@ -21,9 +21,50 @@ body, a:link, a:visited, a:active{
   background-color: #777;
 }
 .dancer{
-  border:10px solid red;
-  border-radius:10px;
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 10px;
   position:absolute;
+}
+.lineUpButton, .startDancing{
+  padding:5px 12px;
+  color: #F2E055;
+  background-color: green;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  font: 16px 'Tahoma', 'Arial', sans-serif;
+  cursor: pointer;
+}
 
-  transition: left top, 600ms, cubic-bezier(0.455, 0.03, 0.515, 0.955);
+.score {
+  color: white;
+  font: 18px 'Arial', 'Helvetica', sans-serif;
+  padding: 5px 10px;
+}
+
+.colorDancer.expand {
+  height: 50px;
+  width: 50px;
+  border-width: 25px;
+  border-radius: 25px;
+}
+
+.dancer.beeGif {
+  background-color: transparent;
+  background-image: url('images/bee.gif');
+  height: 60px;
+  width: 60px;
+}
+
+.dancer.batGif {
+  background-color: transparent;
+  background-image: url('images/bat.gif');
+  height: 70px;
+  width: 80px;
+  background-size: 80px 70px;
+}
+
+.dancer.hidden {
+  background-color: transparent;
 }
